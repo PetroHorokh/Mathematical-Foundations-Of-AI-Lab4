@@ -33,7 +33,8 @@ def print_map(n, distances):
         print(distances[i])
 
 
-def ant_colony_optimization(distance_matrix, num_ants, alpha, beta, evaporation_rate, q0, pheromone_initial,num_iterations):
+def ant_colony_optimization(distance_matrix, num_ants, alpha, beta, evaporation_rate, q0, pheromone_initial,
+                            num_iterations):
     n = len(distance_matrix)
     ant_locations = random.sample(range(n), num_ants)
     pheromone_matrix = [[pheromone_initial for _ in range(n)] for _ in range(n)]
@@ -104,7 +105,7 @@ def ant_colony_optimization(distance_matrix, num_ants, alpha, beta, evaporation_
             if distance < shortest_distance:
                 shortest_distance = distance
                 shortest_path = path + [start]
-        print(f"Iteration {iter+1}: shortest path length = {shortest_distance}, shortest path = {shortest_path}")
+        print(f"Iteration {iter + 1}: shortest path length = {shortest_distance}, shortest path = {shortest_path}")
     return shortest_path, shortest_distance
 
 
@@ -159,7 +160,6 @@ def plot_map(best_path, cities_amount):
 
 generate_map()
 n, distances = read_map()
-#print_map(n, distances)
 num_ants = n
 alpha = 1
 beta = 5
@@ -167,6 +167,7 @@ evaporation_rate = 0.5
 q0 = 0.5
 pheromone_initial = 1.0
 num_iterations = 50
-shortest_path, shortest_distance=ant_colony_optimization(distances,num_ants, alpha, beta, evaporation_rate, q0, pheromone_initial, num_iterations)
-plot_map(shortest_path,n)
+shortest_path, shortest_distance = ant_colony_optimization(distances, num_ants, alpha, beta, evaporation_rate, q0,
+                                                           pheromone_initial, num_iterations)
+plot_map(shortest_path, n)
 print(f"\nShortest path length = {shortest_distance}, shortest path = {shortest_path}")
